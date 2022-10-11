@@ -487,33 +487,6 @@ function load() {
 	};
 	if (files.length > 0) reader.readAsText(files[0]);
 }
-
-/*
-known issues:
-- can't exit fullscreen using the button if it has been entered using F11
-
-todo:
-- vertical beatbar
-- reverse beatbar
-- continue implementing the skin feature
-	- "repeat" scaling
-	- animations ("beat" and "time", using the "framerate" setting)
-	- fade in/out of the beats?
-	- what if an animation and a fade in/out are defined?
-- handle the start/end of a round and play multiple rounds:
-	- fade in from black to the first loop which moves along the bpm of the song which hasn't started yet
-	- beats are approaching (starting from the beginning of the fade)
-	- song starts
-	- first beat is hit
-	for the ending:
-	- last beat is hit
-	- the last loop continues at the bpm
-	- fade out to black
-	- music ends
-a way to do so is to deffer the start time of the music: "start(offset)" then "audio_ctx.resume()"
-- fh generator mix&match (different webpage and export as file?)
-- playback speed
-*/
 </script>
 </body>
 </html>
