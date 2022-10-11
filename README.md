@@ -13,7 +13,13 @@
 
 ### 1.1. General Description
 
-(wip)
+**Latest experiemental version: 1**  
+(modification of the format might still occur)
+
+**Latest released version: n/a**  
+(modification is guaranteed to never happen)
+
+The following documentation refers to the version 1 of this file format.
 
 ### 1.2. Hitsound File Format
 
