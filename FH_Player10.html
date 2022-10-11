@@ -31,8 +31,8 @@
 	<button onclick="toggle_fullscreen();">Fullscreen</button> <button onclick="toggle_cursor();">Toggle Cursor</button> <button onclick="toggle_ui();">Toggle UI</button> <button onclick="if(audio_ctx.state=='suspended'&&round.music!=undefined)audio_ctx.resume();if(audio_ctx.state=='running')audio_ctx.suspend();">Pause/Play</button><br>
 	<br>
 	You can open/close this panel by taping elsewhere on the screen.<br>
-
 </div>
+<script type="text/javascript" src="./toolbox.js"></script>
 <script>
 let c = document.getElementById('c');
 let ui_ctx = c.getContext('2d');
@@ -64,10 +64,6 @@ let round = {
 };
 
 let cuts_rand;//for the smart random
-
-function gID(id) {
-	return document.getElementById(id);
-}
 
 function toggle_settings() {
 	let settings_elm = gID('settings');
@@ -107,16 +103,6 @@ document.addEventListener('keydown', (event)=>{
 c.addEventListener('mousedown', (event)=>{
 	toggle_settings();
 }, false);
-
-function download_txt(filename, txt) {
-	let element = document.createElement('a');
-	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + txt);
-	element.setAttribute('download', filename);
-	element.style.display = 'none';
-	document.body.appendChild(element);
-	element.click();
-	document.body.removeChild(element);
-}
 
 function get_settings() {
 	let settings = {
@@ -158,51 +144,6 @@ function load_settings() {
 		if (data.metadata.type == 'settings') parse_obj(data);
 	};
 	if (files.length > 0) reader.readAsText(files[0]);
-}
-
-function base64ToArrayBuffer(base64) {
-	let binary_string = window.atob(base64);
-	let len = binary_string.length;
-	let bytes = new Uint8Array(len);
-	let i = 0;
-	while (i < len) {
-		bytes[i] = binary_string.charCodeAt(i);
-		i ++;
-	}
-	return bytes.buffer;
-}
-
-function rand(n) {//discrete uniform distribution
-	return Math.floor(Math.random() * n);
-}
-
-function sqrt_rand(n) {//discrete highpass distribution
-	return Math.floor(Math.sqrt(Math.random()) * (n-1)) + 1;
-}
-
-function init_rand(n) {
-	let rand_array = [];
-	let init_array = [];
-	let ctr = 0;
-	while (ctr < n) {
-		init_array.push(ctr);
-		ctr ++;
-	}
-	while (init_array.length > 0) {
-		ctr = rand(init_array.length);
-		rand_array.push(init_array[ctr]);
-		init_array.splice(ctr, 1);
-	}
-	return rand_array;
-}
-
-function smart_rand(rand_array) {
-	if (rand_array.length == 1) return 0;
-	let i = sqrt_rand(rand_array.length);
-	let n = rand_array[i];
-	rand_array.splice(i, 1);
-	rand_array.unshift(n);
-	return n;
 }
 
 function play_hitsound(t) {
@@ -275,16 +216,6 @@ function draw_layer(layer) {
 	while (cnt < round.skin[layer].length) {
 		draw_img_stretch(layer, cnt);
 		cnt ++;
-	}
-}
-
-let to_load = 0;
-let load_hdl_f = ()=>{};
-function load_handler() {
-	if (to_load > 0) to_load --;
-	if (to_load == 0) {
-		load_hdl_f.call();//may increment "to_load"
-		if (to_load == 0) load_hdl_f = ()=>{};
 	}
 }
 
