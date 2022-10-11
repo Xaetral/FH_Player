@@ -13,7 +13,7 @@
 
 ### 1.1. General Description
 
-**Latest experiemental version: 1**  
+**Latest experimental version: 1**  
 (modification of the format might still occur)
 
 **Latest released version: n/a**  
