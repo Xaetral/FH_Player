@@ -43,7 +43,7 @@ These objects must be formated this way:
 }
 ```
 
-the asset metadata.type field is expected to be one included from the following list (case sensitive):
+The asset metadata.type field is expected to be one included from the following list (case sensitive):
 - music
 - beatmap
 - hitsound
@@ -54,31 +54,126 @@ the asset metadata.type field is expected to be one included from the following 
 
 ### 1.3. Music File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "music",
+    "name": {String Object},
+    "author": {String Object}
+  },
+  "data": {String Object}
+}
+```
 
 ### 1.4. Beatmap File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "beatmap",
+    "name": {String Object},
+    "music_name": {String Object}
+  },
+  "data": {
+    "beats": {Array of Numbers},
+    "loops": {Array of Numbers},
+    "cuts": {Array of Numbers}
+  }
+}
+```
 
 ### 1.5. Hitsound File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "hitsound"
+  },
+  "data": {String Object}
+}
+```
 
 ### 1.6. Video File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "video",
+    "source": {String Object},
+    "characters": {Array of String Objects},
+    "name": {String Object},
+    "tags": {Array of String Objects},
+    "phase_shift": {Number},
+    "thumbnail": {String Object}
+  },
+  "data": {Array of String Objects}
+}
+```
 
 ### 1.7. Skin File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "skin",
+    "range": [{Number}, {Number}],
+    "progress_range": [{Number}, {Number}],
+    "height": {Number}
+  },
+  "data": {Array of Skin Element Objects}
+}
+```
+
+```JSON
+{
+  "layer": {String Object},
+  "left": [{String Object}, {Number}],
+  "right": [{String Object}, {Number}],
+  "center": {Number},
+  "top": {Number},
+  "range": [{Number}, {Number}],
+  "scaling": {String Object},
+  "animation": {String Object},
+  "framerate": {Number},
+  "img": {String Object or Array of String Objects}
+}
+```
 
 ### 1.8. Settings File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "settings",
+  },
+  "data": {
+    "beatbar_position": {Number},
+    "beatbar_length": {Number},
+    "t0_position": {Number},
+    "music_volume": {Number},
+    "hitsound_volume": {Number},
+    "time_offset": {Number}
+  }
+}
+```
 
 ### 1.9. Collection File Format
 
-(wip)
+```JSON
+{
+  "metadata": {
+    "version": 1,
+    "type": "collection",
+  },
+  "data": {Array of Asset Objects}
+}
+```
 
 ## 2. Test
 
