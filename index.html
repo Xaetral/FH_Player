@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>FH Player v10</title>
+</head>
+<body style="background-color: #202020; overflow: hidden; margin: 0; left: 0; top: 0; width: 100vw; height: 100vh;">
+<div id="video" style="position: absolute; margin: 0; width: 100%; height: 100%; user-select:none;"></div>
+<canvas id="c" style="position: absolute; margin: 0; left: 0; top: 0; width: 100vw; height: 100vh; /*object-fit: contain;*/ cursor: default;" width="1280" height="720"></canvas>
+<div id="settings" style="background-color: #F0F0F0; position: absolute; left: 20px; top: 20px; display: block; padding: 10px; user-select:none;">
+	<b>Settings Panel</b><br>
+	<br>
+	<input type="file" id="file_input" multiple><button onclick="load();">Load</button><br>
+	<input type="file" id="settings_input" oninput="load_settings();" style="display: none;">
+	<br>
+	<input type="range" id="r_bbps" min="0" max="1" step="0.001" value="1" style="width: 300px;"> Beatbar position<br>
+	<input type="range" id="r_bblh" min="0.5" max="5" step="0.01" value="1.5" style="width: 300px;"> Beatbar time length<br>
+	<input type="range" id="r_bb0p" min="0" max="1" step="0.001" value="0.33" style="width: 300px;"> Beatbar t0 position<br>
+	<input type="range" id="r_mvol" min="0" max="1" step="0.01" value="1" oninput="music_gain.gain.value = +this.value;" style="width: 300px;"> Music volume<br>
+	<input type="range" id="r_hvol" min="0" max="1" step="0.01" value="1" oninput="hitsound_gain.gain.value = +this.value;" style="width: 300px;"> Hitsound volume<br>
+	<input type="range" id="r_tfst" min="-20" max="20" step="0.1" value="0" style="width: 300px;"> Time offset<br>
+	<!--<input type="range" min="0" max="1" step="0.01" value="0" oninput="phase_shift = +this.value;" style="width: 300px;"> Phase Shift<br>-->
+	<button onclick="get_settings();">Export Settings</button> <button onclick="gID('settings_input').click();">Import Settings</button><br>
+	<br>
+	<b>Keybinds:</b><br>
+	- F11: Enter/Exit fullscreen<br>
+	- F9: Show/Hide the mouse cursor<br>
+	- F8: Show/Hide this panel<br>
+	<br>
+	<b>Mobile Access:</b><br>
+	<button onclick="toggle_fullscreen();">Fullscreen</button> <button onclick="toggle_cursor();">Toggle Cursor</button> <button onclick="toggle_ui();">Toggle UI</button> <button onclick="if(audio_ctx.state=='suspended'&&round.music!=undefined)audio_ctx.resume();if(audio_ctx.state=='running')audio_ctx.suspend();">Pause/Play</button><br>
+	<br>
+	You can open/close this panel by taping elsewhere on the screen.<br>
+</div>
+<script type="text/javascript" src="./toolbox.js"></script>
+<script type="text/javascript" src="./engine.js"></script>
+</body>
+</html>
